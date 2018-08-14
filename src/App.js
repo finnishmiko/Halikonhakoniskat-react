@@ -19,6 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
+import Paper from '@material-ui/core/Paper';
 
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ListIcon from '@material-ui/icons/List';
@@ -29,7 +30,6 @@ import StarIcon from '@material-ui/icons/Star';
 import SendIcon from '@material-ui/icons/Send';
 import PlaceIcon from '@material-ui/icons/Place';
 import MenuIcon from '@material-ui/icons/Menu';
-
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -93,7 +93,7 @@ const styles = (theme) => ({
 		flexGrow: 1,
 		// backgroundColor: theme.palette.background.default,
 		// padding: theme.spacing.unit * 3,
-		paddingTop: "10px",
+		paddingTop: '10px',
 	},
 });
 
@@ -129,7 +129,7 @@ class App extends React.Component {
 				<List>
 					<div>
 						<Link to="/">
-							<ListItem button>
+							<ListItem>
 								<ListItemIcon>
 									<HomeIcon color="primary" />
 								</ListItemIcon>
@@ -137,7 +137,7 @@ class App extends React.Component {
 							</ListItem>
 						</Link>
 						<Link to="/kalenteri">
-							<ListItem button>
+							<ListItem>
 								<ListItemIcon>
 									<CalendarToday color="primary" />
 								</ListItemIcon>
@@ -145,7 +145,7 @@ class App extends React.Component {
 							</ListItem>
 						</Link>
 						<Link to="/tulokset">
-							<ListItem button>
+							<ListItem>
 								<ListItemIcon>
 									<ListIcon />
 								</ListItemIcon>
@@ -153,7 +153,7 @@ class App extends React.Component {
 							</ListItem>
 						</Link>
 						<Link to="/">
-							<ListItem button>
+							<ListItem>
 								<ListItemIcon>
 									<InboxIcon color="action" />
 								</ListItemIcon>
@@ -161,7 +161,7 @@ class App extends React.Component {
 							</ListItem>
 						</Link>
 						<Link to="/">
-							<ListItem button>
+							<ListItem>
 								<ListItemIcon>
 									<GroupIcon />
 								</ListItemIcon>
@@ -169,7 +169,7 @@ class App extends React.Component {
 							</ListItem>
 						</Link>
 						<Link to="/">
-							<ListItem button>
+							<ListItem>
 								<ListItemIcon>
 									<PlaceIcon />
 								</ListItemIcon>
@@ -177,7 +177,7 @@ class App extends React.Component {
 							</ListItem>
 						</Link>
 						<Link to="/login">
-							<ListItem button>
+							<ListItem>
 								<ListItemIcon>
 									<StarIcon />
 								</ListItemIcon>
@@ -185,7 +185,7 @@ class App extends React.Component {
 							</ListItem>
 						</Link>
 						<Link to="/secret">
-							<ListItem button>
+							<ListItem>
 								<ListItemIcon>
 									<SendIcon />
 								</ListItemIcon>
@@ -263,13 +263,19 @@ class App extends React.Component {
 								<br />
 
 								<br />
-								<pre>
-									Service Worker status: {this.props.workerState}
-								</pre>
+								<pre>Service Worker status: {this.props.workerState}</pre>
 								<br />
 								{process.env.NODE_ENV !== 'production' ? <pre style={{textAlign: 'left'}}>Errors: {this.props.error && this.props.error.stack}</pre> : null}
 							</main>
 						</div>
+						<footer>
+							<Paper className={classes.footer} elevation={1}>
+								<Typography variant="headline" component="h3">
+									
+								</Typography>
+								<Typography component="p">&copy; 2018 Halikon Hakoniskat ry</Typography>
+							</Paper>
+						</footer>
 					</div>
 				</Router>
 			</div>

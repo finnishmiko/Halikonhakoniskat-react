@@ -42,16 +42,22 @@ const styles = (theme) => ({
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
 		margin: theme.spacing.unit,
+		backgroundColor: 'lightblue',
 	},
 });
 
 class Home extends React.Component {
 	componentDidMount() {
-		this.props.getHome(this.props.etag);
+		this.props.getGoogleDocs(this.props.etagResults).then(() => {
+			// console.log('Did mount: All loaded', this.props.valueResults);
+		});
+		this.props.getGoogleCalendar(this.props.etagCalendar).then(() => {
+			// console.log('Did mount: All loaded', this.props.valueCalendar);
+		});
 	}
 
 	render() {
-		const {classes} = this.props;
+		const {classes, valueResults, valueCalendar} = this.props;
 		return (
 			<div>
 				<Helmet>
@@ -59,7 +65,7 @@ class Home extends React.Component {
 				</Helmet>
 
 				{/* Hero unit */}
-				<div className={classes.heroUnit}></div>
+				<div className={classes.heroUnit} />
 				{/* End hero unit */}
 
 				<div className="App-intro">
@@ -69,21 +75,30 @@ class Home extends React.Component {
 					<Grid container spacing={16} justify="center">
 						<Grid item xl={5} sm={6} xs={12}>
 							<Link to="/kalenteri">
-								<Paper className={classes.hahaGrid}>Kalenteri</Paper>
+								<Paper className={classes.hahaGrid}>
+									Kalenteri:
+									<br />
+									{valueCalendar[0] ? <p>{valueCalendar[0].start}</p> : null}
+									{valueCalendar[0] ? <p>{valueCalendar[0].summary}</p> : null}
+								</Paper>
 							</Link>
 						</Grid>
 						<Grid item xl={5} sm={6} xs={12}>
 							<Link to="/tulokset">
-								<Paper className={classes.hahaGrid}>Tulokset</Paper>
+								<Paper className={classes.hahaGrid}>
+									Viimeisin tulos:
+									<br />
+									{valueResults[0] ? <p>{valueResults[0].name}</p> : null}
+								</Paper>
 							</Link>
 						</Grid>
 					</Grid>
 					<Grid container spacing={16} justify="center">
 						<Grid item xl={5} xs={6}>
-							<Paper className={classes.hahaGrid}>HaHan kansallisen aj 2018</Paper>
+							<Paper className={classes.hahaGrid}>Uutiset</Paper>
 						</Grid>
 						<Grid item xl={5} xs={6}>
-							<Paper className={classes.hahaGrid}>Kesän kilpailukalenteri</Paper>
+							<Paper className={classes.hahaGrid}>Seura</Paper>
 						</Grid>
 					</Grid>
 				</div>
@@ -98,8 +113,10 @@ Home.propTypes = {
 
 const mapStateToProps = (state) => {
 	return {
-		value: state.app.value,
-		etag: state.app.etag,
+		valueResults: state.haha.valueResults,
+		etagResults: state.haha.etagResults,
+		valueCalendar: state.haha.valueCalendar,
+		etagCalendar: state.haha.etagCalendar,
 	};
 };
 
