@@ -29,54 +29,27 @@ const styles = (theme) => ({
 	},
 });
 
-class Results extends React.Component {
-	componentDidMount() {
-		this.props.getGoogleDocs(this.props.etagResults).then(() => {
-			console.log('HaHa did mount: All loaded', this.props.valueResults);
-		});
-	}
+class Team extends React.Component {
+	// componentDidMount() {
+	// }
 	render() {
 		const {classes, valueResults} = this.props;
 		return (
 			<div>
 				<Helmet>
-					<title>Tulokset</title>
+					<title>Seura</title>
 				</Helmet>
 				{/* Hero unit */}
 				<div className={classes.heroUnit}>
 					<div className={classes.heroContent}>
 						<Typography variant="display3" align="center" className={classes.whitetext} gutterBottom>
-							Tulokset
+							Seura
 						</Typography>
 					</div>
 				</div>
 				{/* End hero unit */}
 				<div className="App-intro">
-					Results at <code>views/Results.js</code>.<br />
-					<div className="calendar-container">
-						<h3>Tulokset</h3>
-
-						<table className="table table-sm table-dark">
-							<thead>
-								<tr>
-									<th scope="col">Viimeisimmät tulokset</th>
-								</tr>
-							</thead>
-							<tbody>
-								{valueResults
-									? valueResults.map((doc, idx) => {
-											return (
-												<tr key={idx}>
-													<td>
-														<a href={doc.link}>{doc.name}</a>
-													</td>
-												</tr>
-											);
-									  })
-									: null}
-							</tbody>
-						</table>
-					</div>
+					Team at <code>views/Team.js</code>.<br />
 				</div>
 			</div>
 		);
@@ -85,12 +58,12 @@ class Results extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		valueResults: state.haha.valueResults,
-		etagResults: state.haha.etagResults,
+		// valueResults: state.haha.valueResults,
+		// etagResults: state.haha.etagResults,
 	};
 };
 
 export default connect(
 	mapStateToProps,
 	actions,
-)(withStyles(styles)(translate()(Results)));
+)(withStyles(styles)(translate()(Team)));

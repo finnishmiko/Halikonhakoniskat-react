@@ -48,6 +48,14 @@ const Results = loadable({
 	loader: () => import('./views/Results' /* webpackChunkName: "results-view" */),
 	loading: Loading,
 });
+const News = loadable({
+	loader: () => import('./views/News' /* webpackChunkName: "news-view" */),
+	loading: Loading,
+});
+const Team = loadable({
+	loader: () => import('./views/Team' /* webpackChunkName: "team-view" */),
+	loading: Loading,
+});
 const Login = loadable({
 	loader: () => import('./views/Login' /* webpackChunkName: "login-view" */),
 	loading: Loading,
@@ -87,13 +95,17 @@ const styles = (theme) => ({
 		[theme.breakpoints.up('md')]: {
 			position: 'relative',
 		},
-		backgroundColor: '#aaa',
+		backgroundColor: 'rgba(0,0,0,0.6)',
 	},
 	content: {
 		flexGrow: 1,
 		// backgroundColor: theme.palette.background.default,
 		// padding: theme.spacing.unit * 3,
-		paddingTop: '10px',
+		// paddingTop: '10px',
+	},
+	whitetext: {
+		color: 'white',
+		textDecoration: 'none',
 	},
 });
 
@@ -128,68 +140,68 @@ class App extends React.Component {
 				<Divider />
 				<List>
 					<div>
-						<Link to="/">
+						<Link to="/" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<HomeIcon color="primary" />
+									<HomeIcon disableTypography className={classes.whitetext} />
 								</ListItemIcon>
-								<ListItemText primary="Etusivu" color="#f00" />
+								<ListItemText primary="Etusivu" disableTypography />
 							</ListItem>
 						</Link>
-						<Link to="/kalenteri">
+						<Link to="/kalenteri" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<CalendarToday color="primary" />
+									<CalendarToday disableTypography className={classes.whitetext} />
 								</ListItemIcon>
-								<ListItemText primary="Kalenteri" color="#f00" />
+								<ListItemText primary="Kalenteri" disableTypography />
 							</ListItem>
 						</Link>
-						<Link to="/tulokset">
+						<Link to="/tulokset" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<ListIcon />
+									<ListIcon disableTypography className={classes.whitetext} />
 								</ListItemIcon>
-								<ListItemText primary="Tulokset" />
+								<ListItemText disableTypography primary="Tulokset" className={classes.whitetext} />
 							</ListItem>
 						</Link>
-						<Link to="/">
+						<Link to="/uutiset" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<InboxIcon color="action" />
+									<InboxIcon disableTypography className={classes.whitetext} />
 								</ListItemIcon>
-								<ListItemText primary="Uutiset" />
+								<ListItemText primary="Uutiset" disableTypography className={classes.whitetext} />
 							</ListItem>
 						</Link>
-						<Link to="/">
+						<Link to="/seura" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<GroupIcon />
+									<GroupIcon disableTypography className={classes.whitetext} />
 								</ListItemIcon>
-								<ListItemText primary="Seura" />
+								<ListItemText primary="Seura" disableTypography className={classes.whitetext} />
 							</ListItem>
 						</Link>
-						<Link to="/">
+						<Link to="/" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<PlaceIcon />
+									<PlaceIcon disableTypography className={classes.whitetext} />
 								</ListItemIcon>
-								<ListItemText primary="Salakallio Caravan" />
+								<ListItemText primary="Salakallio Caravan" disableTypography className={classes.whitetext} />
 							</ListItem>
 						</Link>
-						<Link to="/login">
+						<Link to="/login" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<StarIcon />
+									<StarIcon disableTypography className={classes.whitetext} />
 								</ListItemIcon>
-								<ListItemText primary="Login" />
+								<ListItemText primary="Login" disableTypography className={classes.whitetext} />
 							</ListItem>
 						</Link>
-						<Link to="/secret">
+						<Link to="/secret" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<SendIcon />
+									<SendIcon disableTypography className={classes.whitetext} />
 								</ListItemIcon>
-								<ListItemText primary="Secret" />
+								<ListItemText primary="Secret" disableTypography className={classes.whitetext} />
 							</ListItem>
 						</Link>
 					</div>
@@ -253,6 +265,8 @@ class App extends React.Component {
 									<Route exact={true} path="/" component={Home} />
 									<Route exact={true} path="/kalenteri" component={Calendar} />
 									<Route exact={true} path="/tulokset" component={Results} />
+									<Route exact={true} path="/uutiset" component={News} />
+									<Route exact={true} path="/seura" component={Team} />
 									<Route exact={true} path="/login" component={Login} />
 									<PrivateRoute isValid={isLoggedIn} failPath="/login" exact={true} path="/secret" component={Secret} />
 								</Switch>

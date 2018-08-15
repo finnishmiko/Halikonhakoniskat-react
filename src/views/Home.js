@@ -12,6 +12,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
 import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
+import ImageBox from '../images/HaHa-kansallinen2015-Pasi.jpg';
 
 const styles = (theme) => ({
 	appBar: {
@@ -22,12 +23,17 @@ const styles = (theme) => ({
 	},
 	heroUnit: {
 		backgroundColor: theme.palette.background.paper,
-		backgroundImage: `url(${Image})`,
+		backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${Image})`,
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover',
 		width: '100%',
 		height: '30vh',
+	},
+	heroContent: {
+		maxWidth: 600,
+		margin: '0 auto',
+		padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
 	},
 	container: {
 		display: 'grid',
@@ -43,6 +49,17 @@ const styles = (theme) => ({
 		color: theme.palette.text.secondary,
 		margin: theme.spacing.unit,
 		backgroundColor: 'lightblue',
+		// backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${ImageBox})`,
+		// backgroundPosition: 'center',
+		// backgroundRepeat: 'no-repeat',
+		// backgroundSize: 'cover',
+		width: '100%',
+		// height: '28vh',
+	},
+	whitetext: {
+		color: 'white',
+		textDecoration: 'none',
+		textShadow: '0 0 3px rgba(0, 0, 0, 0.5)',
 	},
 });
 
@@ -65,13 +82,19 @@ class Home extends React.Component {
 				</Helmet>
 
 				{/* Hero unit */}
-				<div className={classes.heroUnit} />
+				<div className={classes.heroUnit}>
+					<div className={classes.heroContent}>
+						<Typography variant="display3" align="center" className={classes.whitetext} gutterBottom>
+							HaHa Biathlon
+						</Typography>
+					</div>
+				</div>
 				{/* End hero unit */}
 
 				<div className="App-intro">
-					<Typography variant="display3" align="center" color="textPrimary" gutterBottom>
+					{/* <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
 						Halikon Hakoniskat ry
-					</Typography>
+					</Typography> */}
 					<Grid container spacing={16} justify="center">
 						<Grid item xl={5} sm={6} xs={12}>
 							<Link to="/kalenteri">
@@ -95,10 +118,14 @@ class Home extends React.Component {
 					</Grid>
 					<Grid container spacing={16} justify="center">
 						<Grid item xl={5} xs={6}>
-							<Paper className={classes.hahaGrid}>Uutiset</Paper>
+							<Link to="/uutiset">
+								<Paper className={classes.hahaGrid}>Uutiset</Paper>
+							</Link>
 						</Grid>
 						<Grid item xl={5} xs={6}>
-							<Paper className={classes.hahaGrid}>Seura</Paper>
+							<Link to="/seura">
+								<Paper className={classes.hahaGrid}>Seura</Paper>
+							</Link>
 						</Grid>
 					</Grid>
 				</div>
