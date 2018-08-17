@@ -101,7 +101,6 @@ const styles = (theme) => ({
 		flexGrow: 1,
 		// backgroundColor: theme.palette.background.default,
 		// padding: theme.spacing.unit * 3,
-		// paddingTop: '10px',
 	},
 	whitetext: {
 		color: 'white',
@@ -143,7 +142,7 @@ class App extends React.Component {
 						<Link to="/" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<HomeIcon disableTypography className={classes.whitetext} />
+									<HomeIcon className={classes.whitetext} />
 								</ListItemIcon>
 								<ListItemText primary="Etusivu" disableTypography />
 							</ListItem>
@@ -151,7 +150,7 @@ class App extends React.Component {
 						<Link to="/kalenteri" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<CalendarToday disableTypography className={classes.whitetext} />
+									<CalendarToday className={classes.whitetext} />
 								</ListItemIcon>
 								<ListItemText primary="Kalenteri" disableTypography />
 							</ListItem>
@@ -159,7 +158,7 @@ class App extends React.Component {
 						<Link to="/tulokset" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<ListIcon disableTypography className={classes.whitetext} />
+									<ListIcon className={classes.whitetext} />
 								</ListItemIcon>
 								<ListItemText disableTypography primary="Tulokset" className={classes.whitetext} />
 							</ListItem>
@@ -167,7 +166,7 @@ class App extends React.Component {
 						<Link to="/uutiset" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<InboxIcon disableTypography className={classes.whitetext} />
+									<InboxIcon className={classes.whitetext} />
 								</ListItemIcon>
 								<ListItemText primary="Uutiset" disableTypography className={classes.whitetext} />
 							</ListItem>
@@ -175,7 +174,7 @@ class App extends React.Component {
 						<Link to="/seura" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<GroupIcon disableTypography className={classes.whitetext} />
+									<GroupIcon className={classes.whitetext} />
 								</ListItemIcon>
 								<ListItemText primary="Seura" disableTypography className={classes.whitetext} />
 							</ListItem>
@@ -183,7 +182,7 @@ class App extends React.Component {
 						<Link to="/" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<PlaceIcon disableTypography className={classes.whitetext} />
+									<PlaceIcon className={classes.whitetext} />
 								</ListItemIcon>
 								<ListItemText primary="Salakallio Caravan" disableTypography className={classes.whitetext} />
 							</ListItem>
@@ -191,7 +190,7 @@ class App extends React.Component {
 						<Link to="/login" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<StarIcon disableTypography className={classes.whitetext} />
+									<StarIcon className={classes.whitetext} />
 								</ListItemIcon>
 								<ListItemText primary="Login" disableTypography className={classes.whitetext} />
 							</ListItem>
@@ -199,7 +198,7 @@ class App extends React.Component {
 						<Link to="/secret" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
-									<SendIcon disableTypography className={classes.whitetext} />
+									<SendIcon className={classes.whitetext} />
 								</ListItemIcon>
 								<ListItemText primary="Secret" disableTypography className={classes.whitetext} />
 							</ListItem>
@@ -221,15 +220,17 @@ class App extends React.Component {
 										<MenuIcon />
 									</IconButton>
 									<Typography variant="title" color="inherit" noWrap>
-										<ListItem>
-											<ListItemIcon>
-												<img src={logo} className="App-logo" alt="HaHa logo" />
-											</ListItemIcon>
+										<Link to="/" className={classes.whitetext}>
+											<ListItem>
+												<ListItemIcon>
+													<img src={logo} className="App-logo" alt="HaHa logo" />
+												</ListItemIcon>
 
-											{/* <ListItemText> */}
-											<span>Halikon Hakoniskat ry</span>
-											{/* </ListItemText> */}
-										</ListItem>
+												{/* <ListItemText> */}
+												<span>Halikon Hakoniskat ry</span>
+												{/* </ListItemText> */}
+											</ListItem>
+										</Link>
 									</Typography>
 								</Toolbar>
 							</AppBar>

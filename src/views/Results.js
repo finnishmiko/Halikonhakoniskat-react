@@ -5,6 +5,11 @@ import {translate} from 'react-i18next';
 import actions from '../actions';
 import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
 
 const styles = (theme) => ({
@@ -26,6 +31,36 @@ const styles = (theme) => ({
 		color: 'white',
 		textDecoration: 'none',
 		textShadow: '0 0 3px rgba(0, 0, 0, 0.5)',
+	},
+	table: {
+		border: '3px solid black',
+		overflowX: 'auto',
+	},
+	row: {
+		'&:nth-of-type(odd)': {
+			// backgroundColor: theme.palette.background.default,
+			backgroundColor: '#aaa',
+		},
+	},
+	eventrow: {
+		fontSize: '90%',
+		border: 'none',
+		padding: '0 0 0 1rem',
+	},
+	hahaGrid: {
+		textAlign: 'center',
+		color: theme.palette.text.primary,
+		margin: theme.spacing.unit,
+		// backgroundColor: 'lightblue',
+		// width: '90%',
+		overflowX: 'auto',
+	},
+	hahalink: {
+		textDecoration: 'none',
+		color: theme.palette.text.primary,
+	},
+	hahascaling: {
+		fontSize: '5vmin',
 	},
 });
 
@@ -51,32 +86,30 @@ class Results extends React.Component {
 					</div>
 				</div>
 				{/* End hero unit */}
-				<div className="App-intro">
-					Results at <code>views/Results.js</code>.<br />
-					<div className="calendar-container">
-						<h3>Tulokset</h3>
 
-						<table className="table table-sm table-dark">
-							<thead>
-								<tr>
-									<th scope="col">Viimeisimmät tulokset</th>
-								</tr>
-							</thead>
-							<tbody>
+				<div className="calendar-container">
+					<Paper className={classes.hahaGrid}>
+						<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
+							Tulokset:
+						</Typography>
+						<Table className={classes.table}>
+							<TableBody>
 								{valueResults
-									? valueResults.map((doc, idx) => {
-											return (
-												<tr key={idx}>
-													<td>
-														<a href={doc.link}>{doc.name}</a>
-													</td>
-												</tr>
-											);
-									  })
+									? valueResults.slice(0, 6).map((row, idx) => {
+										return (
+											<TableRow className={classes.row} key={idx}>
+												<TableCell className={classes.eventrow}>
+													<a className={classes.hahalink} href={row.link}>
+														{row.name}
+													</a>
+												</TableCell>
+											</TableRow>
+										);
+									})
 									: null}
-							</tbody>
-						</table>
-					</div>
+							</TableBody>
+						</Table>
+					</Paper>
 				</div>
 			</div>
 		);
