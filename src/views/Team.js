@@ -5,6 +5,8 @@ import {translate} from 'react-i18next';
 import actions from '../actions';
 import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
 
 const styles = (theme) => ({
@@ -27,13 +29,33 @@ const styles = (theme) => ({
 		textDecoration: 'none',
 		textShadow: '0 0 3px rgba(0, 0, 0, 0.5)',
 	},
+	appBarSpacer: theme.mixins.toolbar,
+	content: {
+		// backgroundColor: '#f00',
+		flexGrow: 1,
+		padding: theme.spacing.unit * 3,
+		// height: '100vh',
+		// overflow: 'auto',
+	},
+	paper: {
+		backgroundColor: '#f00',
+	},
+	paper2: {
+		backgroundColor: '#0f0',
+	},
+	paper3: {
+		backgroundColor: '#00f',
+	},
+	paper4: {
+		backgroundColor: '#ff0',
+	},
 });
 
 class Team extends React.Component {
 	// componentDidMount() {
 	// }
 	render() {
-		const {classes, valueResults} = this.props;
+		const {classes} = this.props;
 		return (
 			<div>
 				<Helmet>
@@ -48,9 +70,30 @@ class Team extends React.Component {
 					</div>
 				</div>
 				{/* End hero unit */}
-				<div className="App-intro">
-					Team at <code>views/Team.js</code>.<br />
-				</div>
+
+				<main className={classes.content}>
+					<Paper className={classes.mainFeaturedPost}>
+						<Grid container justify="center">
+							<Grid item md={6}>
+								<Typography variant="display2" color="inherit" gutterBottom>
+									Halikon Hakoniskat
+								</Typography>
+								<ul align="left">
+									<li>perustettu 1932</li>
+									<li>jäseniä n. 800</li>
+									<li>yleisseura, jonka jaostoja ovat</li>
+									<ul>
+										<li>ampumajuoksu- ja ampumahiihtojaosto</li>
+										<li>hiihtojaosto</li>
+										<li>naisjaosto</li>
+										<li>suunnistusjaosto</li>
+										<li>yleisurheilujaosto</li>
+									</ul>
+								</ul>
+							</Grid>
+						</Grid>
+					</Paper>
+				</main>
 			</div>
 		);
 	}

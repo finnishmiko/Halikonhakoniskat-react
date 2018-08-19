@@ -5,7 +5,7 @@ import {translate} from 'react-i18next';
 import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux';
-import PrivateRoute from './components/PrivateRoute';
+// import PrivateRoute from './components/PrivateRoute';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,15 +20,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ListIcon from '@material-ui/icons/List';
 import GroupIcon from '@material-ui/icons/Group';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import HomeIcon from '@material-ui/icons/Home';
-import StarIcon from '@material-ui/icons/Star';
-import SendIcon from '@material-ui/icons/Send';
-import PlaceIcon from '@material-ui/icons/Place';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -56,14 +54,14 @@ const Team = loadable({
 	loader: () => import('./views/Team' /* webpackChunkName: "team-view" */),
 	loading: Loading,
 });
-const Login = loadable({
-	loader: () => import('./views/Login' /* webpackChunkName: "login-view" */),
-	loading: Loading,
-});
-const Secret = loadable({
-	loader: () => import('./views/Secret' /* webpackChunkName: "secret-view" */),
-	loading: Loading,
-});
+// const Login = loadable({
+// 	loader: () => import('./views/Login' /* webpackChunkName: "login-view" */),
+// 	loading: Loading,
+// });
+// const Secret = loadable({
+// 	loader: () => import('./views/Secret' /* webpackChunkName: "secret-view" */),
+// 	loading: Loading,
+// });
 
 const drawerWidth = 240;
 
@@ -106,6 +104,11 @@ const styles = (theme) => ({
 		color: 'white',
 		textDecoration: 'none',
 	},
+	footer: {
+		backgroundColor: theme.palette.background.paper,
+		marginTop: theme.spacing.unit * 8,
+		padding: `${theme.spacing.unit * 6}px 0`,
+	},
 });
 
 class App extends React.Component {
@@ -129,8 +132,7 @@ class App extends React.Component {
 	};
 
 	render() {
-		const {isLoggedIn} = this.props;
-
+		// const {isLoggedIn} = this.props;
 		const {classes} = this.props;
 
 		const drawer = (
@@ -179,15 +181,15 @@ class App extends React.Component {
 								<ListItemText primary="Seura" disableTypography className={classes.whitetext} />
 							</ListItem>
 						</Link>
-						<Link to="/" className={classes.whitetext}>
+						{/* <Link to="/" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
 									<PlaceIcon className={classes.whitetext} />
 								</ListItemIcon>
 								<ListItemText primary="Salakallio Caravan" disableTypography className={classes.whitetext} />
 							</ListItem>
-						</Link>
-						<Link to="/login" className={classes.whitetext}>
+						</Link> */}
+						{/* <Link to="/login" className={classes.whitetext}>
 							<ListItem>
 								<ListItemIcon>
 									<StarIcon className={classes.whitetext} />
@@ -202,7 +204,7 @@ class App extends React.Component {
 								</ListItemIcon>
 								<ListItemText primary="Secret" disableTypography className={classes.whitetext} />
 							</ListItem>
-						</Link>
+						</Link> */}
 					</div>
 				</List>
 			</div>
@@ -268,8 +270,8 @@ class App extends React.Component {
 									<Route exact={true} path="/tulokset" component={Results} />
 									<Route exact={true} path="/uutiset" component={News} />
 									<Route exact={true} path="/seura" component={Team} />
-									<Route exact={true} path="/login" component={Login} />
-									<PrivateRoute isValid={isLoggedIn} failPath="/login" exact={true} path="/secret" component={Secret} />
+									{/* <Route exact={true} path="/login" component={Login} />
+									<PrivateRoute isValid={isLoggedIn} failPath="/login" exact={true} path="/secret" component={Secret} /> */}
 								</Switch>
 								<br />
 								{this.props.isLoading ? 'Fetching API data ..' : ''}
@@ -288,7 +290,19 @@ class App extends React.Component {
 								<Typography variant="headline" component="h3">
 									
 								</Typography>
-								<Typography component="p">&copy; 2018 Halikon Hakoniskat ry</Typography>
+								<Grid container>
+									<Grid item xs={6}>
+										<Typography component="p">Veikko Virta</Typography>
+										<Typography component="p">0500 783745</Typography>
+										<Typography component="p">veikko.virta(at)luukku.com</Typography>
+									</Grid>
+									<Grid item xs={6}>
+										<Typography component="p">Reino Heikkilä</Typography>
+										<Typography component="p">050 5678904</Typography>
+										<Typography component="p">reino.heikkila(at)halikko.salonseutu.fi</Typography>
+									</Grid>
+								</Grid>
+								<Typography variant="title">&copy; 2018 Halikon Hakoniskat ry</Typography>
 							</Paper>
 						</footer>
 					</div>

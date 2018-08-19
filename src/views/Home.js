@@ -121,78 +121,84 @@ class Home extends React.Component {
 				</div>
 				{/* End hero unit */}
 
-				<div className="App-intro">
-					<Grid container spacing={32} justify="center">
-						<Grid item xl={5} sm={6} xs={12}>
-							<Link className={classes.hahalink} to="/kalenteri">
-								<Paper className={classes.hahaGrid}>
-									<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
-										Seuraavat tapahtumat:
-									</Typography>
-									<Table className={classes.table}>
-										<TableBody>
-											{valueCalendar
-												? valueCalendar.slice(0, 3).map((row, idx) => {
-													let weekday = new Date(row.start).getDay();
-													let monthname = new Date(row.start).getMonth();
-													return (
-														[
-															<TableRow className={classes.row} key={idx + 'a'}>
-																<TableCell className={classes.daterow} colSpan="2">{days[weekday] + ', ' + new Date(row.start).getDate() + ' ' + months[monthname]}</TableCell>
-															</TableRow>,
-															<TableRow className={classes.row} key={idx + 'b'}>
-																<TableCell className={classes.eventrow}>
-																	{(new Date(row.start).getHours() < 10 ? '0' + new Date(row.start).getHours() : new Date(row.start).getHours()) +
-																		':' +
-																		(new Date(row.start).getMinutes() < 10 ? '0' + new Date(row.start).getMinutes() : new Date(row.start).getMinutes())}
-																</TableCell>
-																<TableCell className={classes.eventrow}>{row.summary}</TableCell>
-															</TableRow>,
-														]
-													);
-												})
-												: null}
-										</TableBody>
-									</Table>
-								</Paper>
-							</Link>
-						</Grid>
-						<Grid item xl={5} sm={6} xs={12}>
-							<Link className={classes.hahalink} to="/tulokset">
-								<Paper className={classes.hahaGrid}>
-									<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
-										Viimeisimmät tulokset:
-									</Typography>
-									<Table className={classes.table}>
-										<TableBody>
-											{valueResults
-												? valueResults.slice(0, 6).map((row, idx) => {
-													return (
-														<TableRow className={classes.row} key={idx}>
-															<TableCell className={classes.eventrow}>{row.name}</TableCell>
-														</TableRow>
-													);
-												})
-												: null}
-										</TableBody>
-									</Table>
-								</Paper>
-							</Link>
-						</Grid>
+				<Grid container spacing={32} justify="center">
+					<Grid item xl={5} sm={6} xs={12}>
+						<Link className={classes.hahalink} to="/kalenteri">
+							<Paper className={classes.hahaGrid}>
+								<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
+									Seuraavat tapahtumat:
+								</Typography>
+								<Table className={classes.table}>
+									<TableBody>
+										{valueCalendar
+											? valueCalendar.slice(0, 3).map((row, idx) => {
+												let weekday = new Date(row.start).getDay();
+												let monthname = new Date(row.start).getMonth();
+												return [
+													<TableRow className={classes.row} key={idx + 'a'}>
+														<TableCell className={classes.daterow} colSpan="2">
+															{days[weekday] + ', ' + new Date(row.start).getDate() + ' ' + months[monthname]}
+														</TableCell>
+													</TableRow>,
+													<TableRow className={classes.row} key={idx + 'b'}>
+														<TableCell className={classes.eventrow}>
+															{(new Date(row.start).getHours() < 10 ? '0' + new Date(row.start).getHours() : new Date(row.start).getHours()) +
+																':' +
+																(new Date(row.start).getMinutes() < 10 ? '0' + new Date(row.start).getMinutes() : new Date(row.start).getMinutes())}
+														</TableCell>
+														<TableCell className={classes.eventrow}>{row.summary}</TableCell>
+													</TableRow>,
+												];
+											})
+											: null}
+									</TableBody>
+								</Table>
+							</Paper>
+						</Link>
 					</Grid>
-					<Grid container spacing={32} justify="center">
-						<Grid item xl={5} xs={6}>
-							<Link className={classes.hahalink} to="/uutiset">
-								<Paper className={classes.hahaGrid}>Uutiset</Paper>
-							</Link>
-						</Grid>
-						<Grid item xl={5} xs={6}>
-							<Link className={classes.hahalink} to="/seura">
-								<Paper className={classes.hahaGrid}>Seura</Paper>
-							</Link>
-						</Grid>
+					<Grid item xl={5} sm={6} xs={12}>
+						<Link className={classes.hahalink} to="/tulokset">
+							<Paper className={classes.hahaGrid}>
+								<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
+									Viimeisimmät tulokset:
+								</Typography>
+								<Table className={classes.table}>
+									<TableBody>
+										{valueResults
+											? valueResults.slice(0, 6).map((row, idx) => {
+												return (
+													<TableRow className={classes.row} key={idx}>
+														<TableCell className={classes.eventrow}>{row.name}</TableCell>
+													</TableRow>
+												);
+											})
+											: null}
+									</TableBody>
+								</Table>
+							</Paper>
+						</Link>
 					</Grid>
-				</div>
+				</Grid>
+				<Grid container spacing={32} justify="center">
+					<Grid item xl={5} xs={6}>
+						<Link className={classes.hahalink} to="/uutiset">
+							<Paper className={classes.hahaGrid}>
+								<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
+									Uutiset
+								</Typography>
+							</Paper>
+						</Link>
+					</Grid>
+					<Grid item xl={5} xs={6}>
+						<Link className={classes.hahalink} to="/seura">
+							<Paper className={classes.hahaGrid}>
+								<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
+									Seura
+								</Typography>
+							</Paper>
+						</Link>
+					</Grid>
+				</Grid>
 			</div>
 		);
 	}
