@@ -10,7 +10,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-
+import Grid from '@material-ui/core/Grid';
 import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
 
 const styles = (theme) => ({
@@ -62,6 +62,9 @@ const styles = (theme) => ({
 		// width: '100%',
 		overflowX: 'auto',
 	},
+	resultContainer: {
+		height: '20rem',
+	},
 });
 
 const days = ['Sunnuntai', 'Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai'];
@@ -107,31 +110,35 @@ class Calendar extends React.Component {
 						<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
 							Tulevat tapahtumat:
 						</Typography>
-						<Table className={classes.table}>
-							<TableBody>
-								{valueCalendar
-									? valueCalendar.map((row, idx) => {
-										let weekday = new Date(row.start).getDay();
-										let monthname = new Date(row.start).getMonth();
-										return [
-											<TableRow className={classes.row} key={idx + 'a'}>
-												<TableCell className={classes.daterow} colSpan="2">
-													{days[weekday] + ', ' + new Date(row.start).getDate() + ' ' + months[monthname]}
-												</TableCell>
-											</TableRow>,
-											<TableRow className={classes.row} key={idx + 'b'}>
-												<TableCell className={classes.eventrow}>
-													{(new Date(row.start).getHours() < 10 ? '0' + new Date(row.start).getHours() : new Date(row.start).getHours()) +
-														':' +
-														(new Date(row.start).getMinutes() < 10 ? '0' + new Date(row.start).getMinutes() : new Date(row.start).getMinutes())}
-												</TableCell>
-												<TableCell className={classes.eventrow}>{row.summary}</TableCell>
-											</TableRow>,
-										];
-									})
-									: null}
-							</TableBody>
-						</Table>
+						<Grid container className={classes.resultContainer} justify="center">
+							<Grid item xl={5} sm={6} xs={12}>
+								<Table className={classes.table}>
+									<TableBody>
+										{valueCalendar
+											? valueCalendar.map((row, idx) => {
+												let weekday = new Date(row.start).getDay();
+												let monthname = new Date(row.start).getMonth();
+												return [
+													<TableRow className={classes.row} key={idx + 'a'}>
+														<TableCell className={classes.daterow} colSpan="2">
+															{days[weekday] + ', ' + new Date(row.start).getDate() + ' ' + months[monthname]}
+														</TableCell>
+													</TableRow>,
+													<TableRow className={classes.row} key={idx + 'b'}>
+														<TableCell className={classes.eventrow}>
+															{(new Date(row.start).getHours() < 10 ? '0' + new Date(row.start).getHours() : new Date(row.start).getHours()) +
+																':' +
+																(new Date(row.start).getMinutes() < 10 ? '0' + new Date(row.start).getMinutes() : new Date(row.start).getMinutes())}
+														</TableCell>
+														<TableCell className={classes.eventrow}>{row.summary}</TableCell>
+													</TableRow>,
+												];
+											})
+											: null}
+									</TableBody>
+								</Table>
+							</Grid>
+						</Grid>
 					</Paper>
 				</div>
 			</div>

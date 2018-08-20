@@ -10,6 +10,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import Grid from '@material-ui/core/Grid';
 import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
 
 const styles = (theme) => ({
@@ -53,6 +54,7 @@ const styles = (theme) => ({
 		margin: theme.spacing.unit,
 		// backgroundColor: 'lightblue',
 		// width: '90%',
+		// height: '20rem',
 		overflowX: 'auto',
 	},
 	hahalink: {
@@ -61,6 +63,9 @@ const styles = (theme) => ({
 	},
 	hahascaling: {
 		fontSize: '5vmin',
+	},
+	resultContainer: {
+		height: '20rem',
 	},
 });
 
@@ -87,30 +92,32 @@ class Results extends React.Component {
 				</div>
 				{/* End hero unit */}
 
-				<div className="calendar-container">
-					<Paper className={classes.hahaGrid}>
-						<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
-							Tulokset:
-						</Typography>
-						<Table className={classes.table}>
-							<TableBody>
-								{valueResults
-									? valueResults.slice(0, 6).map((row, idx) => {
-										return (
-											<TableRow className={classes.row} key={idx}>
-												<TableCell className={classes.eventrow}>
-													<a className={classes.hahalink} href={row.link}>
-														{row.name}
-													</a>
-												</TableCell>
-											</TableRow>
-										);
-									})
-									: null}
-							</TableBody>
-						</Table>
-					</Paper>
-				</div>
+				<Paper className={classes.hahaGrid}>
+					<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
+						Tulokset:
+					</Typography>
+					<Grid container justify="center">
+						<Grid item className={classes.resultContainer} xl={5} sm={6} xs={12}>
+							<Table className={classes.table}>
+								<TableBody>
+									{valueResults
+										? valueResults.map((row, idx) => {
+											return (
+												<TableRow className={classes.row} key={idx}>
+													<TableCell className={classes.eventrow}>
+														<a className={classes.hahalink} href={row.link}>
+															{row.name}
+														</a>
+													</TableCell>
+												</TableRow>
+											);
+										})
+										: null}
+								</TableBody>
+							</Table>
+						</Grid>
+					</Grid>
+				</Paper>
 			</div>
 		);
 	}

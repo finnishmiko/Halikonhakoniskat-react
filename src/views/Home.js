@@ -99,7 +99,7 @@ class Home extends React.Component {
 			// console.log('Did mount: All loaded', this.props.valueResults);
 		});
 		this.props.getGoogleCalendar(this.props.etagCalendar).then(() => {
-			console.log('Did mount: All loaded', this.props.valueCalendar);
+			// console.log('Did mount: All loaded', this.props.valueCalendar);
 		});
 	}
 

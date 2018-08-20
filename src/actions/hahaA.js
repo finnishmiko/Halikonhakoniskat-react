@@ -82,7 +82,7 @@ export const getGoogleCalendar = (etag) => (dispatch) => {
 		.then((data) => {
 			if (data) {
 				const {etag, json} = data;
-				console.log('HaHa Dispatch changes', json, etag);
+				// console.log('HaHa Dispatch changes', json, etag);
 				if (json) {
 					return Promise.resolve(dispatch({type: TYPES.HAHA_CALENDAR_DATA, valueCalendar: json, etagCalendar: etag}));
 				} else {
