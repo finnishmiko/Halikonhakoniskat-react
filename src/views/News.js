@@ -107,6 +107,10 @@ const styles = (theme) => ({
 });
 
 class News extends React.Component {
+	componentDidMount() {
+		let posts = require('../news');
+		console.log(posts[0].title);
+	}
 	render() {
 		const {classes} = this.props;
 		return (
@@ -181,7 +185,6 @@ class News extends React.Component {
 									Menneitä tapahtumia
 								</Typography>
 								<Divider />
-
 							</Grid>
 							{/* End main content */}
 							{/* Sidebar */}
@@ -190,9 +193,7 @@ class News extends React.Component {
 									<Typography variant="title" gutterBottom>
 										Tietoja
 									</Typography>
-									<Typography>
-										Halikon Hakoniskojen tapahtumia.
-									</Typography>
+									<Typography>Halikon Hakoniskojen tapahtumia.</Typography>
 								</Paper>
 							</Grid>
 							{/* End sidebar */}
