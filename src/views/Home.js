@@ -22,6 +22,8 @@ import logo from '../logo.svg';
 import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
 import ImageBox from '../images/HaHa-kansallinen2015-Pasi.jpg';
 
+let posts = require('../news');
+
 const styles = (theme) => ({
 	table: {
 		border: '3px solid black',
@@ -82,7 +84,7 @@ const styles = (theme) => ({
 		// maxWidth: 345,
 	},
 	media: {
-		height: 140,
+		height: 200,
 	},
 	mediaLogo: {
 		minWidth: '100px',
@@ -205,10 +207,10 @@ class Home extends React.Component {
 									<CardMedia className={classes.media} image={ImageBox} title="HaHa image" />
 									<CardContent>
 										<Typography gutterBottom variant="headline" component="h2">
-											HaHan kansallisen AJ-kisan kuvia
+											{posts ? posts[posts.length - 1].title : null}
 										</Typography>
 										<Typography component="p">
-											Kesä 2018.
+											{posts ? posts[posts.length - 1].description : null}
 										</Typography>
 									</CardContent>
 								</Card>
