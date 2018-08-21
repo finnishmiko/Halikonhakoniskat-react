@@ -294,12 +294,12 @@ class App extends React.Component {
 									<Grid item xs={6}>
 										<Typography component="p">Veikko Virta</Typography>
 										<Typography component="p">0500 783745</Typography>
-										<Typography component="p">veikko.virta(at)luukku.com</Typography>
+										<Typography noWrap component="p">veikko.virta(at)luukku.com</Typography>
 									</Grid>
 									<Grid item xs={6}>
 										<Typography component="p">Reino Heikkilä</Typography>
 										<Typography component="p">050 5678904</Typography>
-										<Typography component="p">reino.heikkila(at)halikko.salonseutu.fi</Typography>
+										<Typography noWrap component="p">reino.heikkila(at)halikko.salonseutu.fi</Typography>
 									</Grid>
 								</Grid>
 								<Typography variant="title">&copy; 2018 Halikon Hakoniskat ry</Typography>

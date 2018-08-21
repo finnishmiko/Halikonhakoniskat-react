@@ -28,6 +28,7 @@ const styles = (theme) => ({
 		color: 'white',
 		textDecoration: 'none',
 		textShadow: '0 0 3px rgba(0, 0, 0, 0.5)',
+		fontSize: '8vmin',
 	},
 	appBarSpacer: theme.mixins.toolbar,
 	content: {

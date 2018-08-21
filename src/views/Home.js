@@ -13,11 +13,14 @@ import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 // import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
+import logo from '../logo.svg';
 import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
-// import ImageBox from '../images/HaHa-kansallinen2015-Pasi.jpg';
+import ImageBox from '../images/HaHa-kansallinen2015-Pasi.jpg';
 
 const styles = (theme) => ({
 	table: {
@@ -67,13 +70,25 @@ const styles = (theme) => ({
 		color: 'white',
 		textDecoration: 'none',
 		textShadow: '0 0 3px rgba(0, 0, 0, 0.5)',
-		// fontSize: '10vmin',
+		fontSize: '8vmin',
 	},
 	hahalink: {
 		textDecoration: 'none',
 	},
 	hahascaling: {
 		fontSize: '5vmin',
+	},
+	card: {
+		// maxWidth: 345,
+	},
+	media: {
+		height: 140,
+	},
+	mediaLogo: {
+		minWidth: '100px',
+		maxHeight: '150px',
+		width: 'auto',
+		height: 'auto',
 	},
 });
 
@@ -186,6 +201,17 @@ class Home extends React.Component {
 								<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
 									Uutiset
 								</Typography>
+								<Card className={classes.card}>
+									<CardMedia className={classes.media} image={ImageBox} title="HaHa image" />
+									<CardContent>
+										<Typography gutterBottom variant="headline" component="h2">
+											HaHan kansallisen AJ-kisan kuvia
+										</Typography>
+										<Typography component="p">
+											Kesä 2018.
+										</Typography>
+									</CardContent>
+								</Card>
 							</Paper>
 						</Link>
 					</Grid>
@@ -195,6 +221,10 @@ class Home extends React.Component {
 								<Typography className={classes.hahascaling} variant="display1" color="textPrimary" align="center" paragraph>
 									Seura
 								</Typography>
+								<Card className={classes.card}>
+									<img src={logo} className={classes.mediaLogo} alt="HaHa logo" />
+									{/* <CardMedia className={classes.mediaLogo} image={logo} title="Halikon Hakoniskat ry logo" /> */}
+								</Card>
 							</Paper>
 						</Link>
 					</Grid>
