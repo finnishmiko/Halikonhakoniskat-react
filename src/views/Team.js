@@ -7,7 +7,8 @@ import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
+// import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
+import Image from '../images/HaHa-Team-SM-2018.jpg';
 
 const styles = (theme) => ({
 	heroUnit: {
