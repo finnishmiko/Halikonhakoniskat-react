@@ -21,13 +21,15 @@ import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ListIcon from '@material-ui/icons/List';
 import GroupIcon from '@material-ui/icons/Group';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
+import Snackbar from '@material-ui/core/Snackbar';
+import CloseIcon from '@material-ui/icons/Close';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -95,10 +97,11 @@ const styles = (theme) => ({
 		},
 		backgroundColor: 'rgba(0,0,0,0.6)',
 	},
+	progress: {
+		margin: theme.spacing.unit * 2,
+	},
 	content: {
 		flexGrow: 1,
-		// backgroundColor: theme.palette.background.default,
-		// padding: theme.spacing.unit * 3,
 	},
 	whitetext: {
 		color: 'white',
@@ -109,6 +112,10 @@ const styles = (theme) => ({
 		marginTop: theme.spacing.unit * 8,
 		padding: `${theme.spacing.unit * 6}px 0`,
 	},
+	close: {
+		width: theme.spacing.unit * 4,
+		height: theme.spacing.unit * 4,
+	},
 });
 
 class App extends React.Component {
@@ -116,6 +123,7 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			mobileOpen: false,
+			open: true,
 		};
 		this.onLanguageChange = this.onLanguageChange.bind(this);
 		this.checkLogin = this.checkLogin.bind(this);
@@ -129,6 +137,13 @@ class App extends React.Component {
 
 	handleDrawerToggle = () => {
 		this.setState((state) => ({mobileOpen: !state.mobileOpen}));
+	};
+
+	handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+		this.setState({open: false});
 	};
 
 	render() {
@@ -181,30 +196,6 @@ class App extends React.Component {
 								<ListItemText primary="Seura" disableTypography className={classes.whitetext} />
 							</ListItem>
 						</Link>
-						{/* <Link to="/" className={classes.whitetext}>
-							<ListItem>
-								<ListItemIcon>
-									<PlaceIcon className={classes.whitetext} />
-								</ListItemIcon>
-								<ListItemText primary="Salakallio Caravan" disableTypography className={classes.whitetext} />
-							</ListItem>
-						</Link> */}
-						{/* <Link to="/login" className={classes.whitetext}>
-							<ListItem>
-								<ListItemIcon>
-									<StarIcon className={classes.whitetext} />
-								</ListItemIcon>
-								<ListItemText primary="Login" disableTypography className={classes.whitetext} />
-							</ListItem>
-						</Link>
-						<Link to="/secret" className={classes.whitetext}>
-							<ListItem>
-								<ListItemIcon>
-									<SendIcon className={classes.whitetext} />
-								</ListItemIcon>
-								<ListItemText primary="Secret" disableTypography className={classes.whitetext} />
-							</ListItem>
-						</Link> */}
 					</div>
 				</List>
 			</div>
@@ -231,6 +222,7 @@ class App extends React.Component {
 												{/* <ListItemText> */}
 												<span>Halikon Hakoniskat ry</span>
 												{/* </ListItemText> */}
+												{this.props.isLoading ? <CircularProgress className={classes.progress} color="secondary" /> : ''}
 											</ListItem>
 										</Link>
 									</Typography>
@@ -273,30 +265,52 @@ class App extends React.Component {
 									{/* <Route exact={true} path="/login" component={Login} />
 									<PrivateRoute isValid={isLoggedIn} failPath="/login" exact={true} path="/secret" component={Secret} /> */}
 								</Switch>
-								<br />
-								{this.props.isLoading ? 'Fetching API data ..' : ''}
-								<br />
-								{this.props.error ? <h2 style={{color: 'red'}}>Error: {this.props.error.message}</h2> : null}
-								<br />
 
-								{process.env.NODE_ENV !== 'production' ? <pre style={{textAlign: 'left'}}>Errors: {this.props.error && this.props.error.stack}</pre> : null}
+								{this.props.error ? (
+									<Snackbar
+										anchorOrigin={{
+											vertical: 'bottom',
+											horizontal: 'left',
+										}}
+										open={this.state.open}
+										autoHideDuration={15000}
+										onClose={this.handleClose}
+										ContentProps={{
+											'aria-describedby': 'message-id',
+										}}
+										message={
+											<span style={{color: 'red'}} id="message-id">
+												Error: {this.props.error.message}
+											</span>
+										}
+										action={[
+											<IconButton key="close" aria-label="Close" color="inherit" className={classes.close} onClick={this.handleClose}>
+												<CloseIcon />
+											</IconButton>,
+										]}
+									/>
+								) : null}
+
+								{process.env.NODE_ENV !== 'production' ? <pre style={{textAlign: 'left'}}>Development {this.props.error && this.props.error.stack}</pre> : null}
 							</main>
 						</div>
 						<footer>
 							<Paper className={classes.footer} elevation={1}>
-								<Typography variant="headline" component="h3">
-									
-								</Typography>
+								<Typography variant="headline" component="h3" />
 								<Grid container>
 									<Grid item xs={6}>
 										<Typography component="p">Veikko Virta</Typography>
 										<Typography component="p">0500 783745</Typography>
-										<Typography noWrap component="p">veikko.virta(at)luukku.com</Typography>
+										<Typography noWrap component="p">
+											veikko.virta(at)luukku.com
+										</Typography>
 									</Grid>
 									<Grid item xs={6}>
 										<Typography component="p">Reino Heikkilä</Typography>
 										<Typography component="p">050 5678904</Typography>
-										<Typography noWrap component="p">reino.heikkila(at)halikko.salonseutu.fi</Typography>
+										<Typography noWrap component="p">
+											reino.heikkila(at)halikko.salonseutu.fi
+										</Typography>
 									</Grid>
 								</Grid>
 								<Typography variant="title">&copy; 2018 Halikon Hakoniskat ry</Typography>
