@@ -279,9 +279,6 @@ class App extends React.Component {
 								{this.props.error ? <h2 style={{color: 'red'}}>Error: {this.props.error.message}</h2> : null}
 								<br />
 
-								<br />
-								<pre>Service Worker status: {this.props.workerState}</pre>
-								<br />
 								{process.env.NODE_ENV !== 'production' ? <pre style={{textAlign: 'left'}}>Errors: {this.props.error && this.props.error.stack}</pre> : null}
 							</main>
 						</div>
