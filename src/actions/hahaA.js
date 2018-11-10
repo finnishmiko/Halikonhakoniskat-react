@@ -3,7 +3,8 @@ import {ACTION_TYPES as TYPES} from '../reducers/hahaR';
 
 /**
  * Get result documents from Google Drive
- * @param {*} etag 
+ * @param {*} etag
+ * @return {data}
  */
 export const getGoogleDocs = (etag) => (dispatch) => {
 	dispatch({type: APP_TYPES.LOADING});
@@ -52,6 +53,8 @@ export const getGoogleDocs = (etag) => (dispatch) => {
 
 /**
  * Get Google calendar items
+ * @param {*} etag
+ * @return {data}
  */
 export const getGoogleCalendar = (etag) => (dispatch) => {
 	dispatch({type: APP_TYPES.LOADING});

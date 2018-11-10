@@ -16,7 +16,6 @@ import TableCell from '@material-ui/core/TableCell';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-// import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import logo from '../logo.svg';
 import Image from '../images/HaHa-kansalliset2016-naiset.jpg';
@@ -31,7 +30,6 @@ const styles = (theme) => ({
 	},
 	row: {
 		'&:nth-of-type(odd)': {
-			// backgroundColor: theme.palette.background.default,
 			backgroundColor: '#aaa',
 		},
 	},
@@ -209,9 +207,7 @@ class Home extends React.Component {
 										<Typography gutterBottom variant="headline" component="h2">
 											{posts ? posts[posts.length - 1].title : null}
 										</Typography>
-										<Typography component="p">
-											{posts ? posts[posts.length - 1].description : null}
-										</Typography>
+										<Typography component="p">{posts ? posts[posts.length - 1].description : null}</Typography>
 									</CardContent>
 								</Card>
 							</Paper>
