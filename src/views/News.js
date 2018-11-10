@@ -62,6 +62,10 @@ const styles = (theme) => ({
 	toolbarSecondary: {
 		justifyContent: 'space-between',
 	},
+	mainFeaturedLink: {
+		textDecoration: 'none',
+		color: 'white',
+	},
 	mainFeaturedPost: {
 		backgroundColor: theme.palette.grey[800],
 		color: theme.palette.common.white,
@@ -83,7 +87,11 @@ const styles = (theme) => ({
 		flex: 1,
 	},
 	cardMedia: {
+		minHeight: '20vw',
 		width: '10rem',
+	},
+	cardTopMedia: {
+		height: '43vw',
 	},
 	media: {
 		height: '100%',
@@ -124,31 +132,58 @@ class News extends React.Component {
 						{/* Main featured post */}
 						<Paper className={classes.mainFeaturedPost}>
 							<Grid container>
-								<Grid item md={6}>
-									<div className={classes.mainFeaturedPostContent}>
-										<Typography variant="subheading" color="inherit">
-											{posts ? posts[posts.length - 1].date : null}
-										</Typography>
-										<Typography variant="display2" color="inherit" gutterBottom>
-											{posts ? posts[posts.length - 1].title : null}
-										</Typography>
-										<Typography variant="headline" color="inherit" paragraph>
-											{posts ? posts[posts.length - 1].description : null}
-										</Typography>
-									</div>
-								</Grid>
+								{posts ? (
+									posts[posts.length - 1].extlink ? (
+										<Grid item md={6}>
+											<a href={posts[posts.length - 1].extlink} className={classes.mainFeaturedLink}>
+												<div className={classes.mainFeaturedPostContent}>
+													<Typography variant="subheading" color="inherit">
+														{posts ? posts[posts.length - 1].date : null}
+													</Typography>
+													<Typography variant="display2" color="inherit" gutterBottom>
+														{posts ? posts[posts.length - 1].title : null}
+													</Typography>
+													<Typography variant="headline" color="inherit" paragraph>
+														{posts ? posts[posts.length - 1].description : null}
+													</Typography>
+												</div>
+											</a>
+										</Grid>
+									) : (
+										<Grid item md={6}>
+											<div className={classes.mainFeaturedPostContent}>
+												<Typography variant="subheading" color="inherit">
+													{posts ? posts[posts.length - 1].date : null}
+												</Typography>
+												<Typography variant="display2" color="inherit" gutterBottom>
+													{posts ? posts[posts.length - 1].title : null}
+												</Typography>
+												<Typography variant="headline" color="inherit" paragraph>
+													{posts ? posts[posts.length - 1].description : null}
+												</Typography>
+											</div>
+										</Grid>
+									)
+								) : (
+									''
+								)}
+
 								<Grid item md={6}>
 									<CardMedia className={classes.media} image={ImageBox} title="HaHa image" />
 								</Grid>
 							</Grid>
 						</Paper>
 						{/* End main featured post */}
+
 						{/* Sub featured posts */}
 						<Grid container spacing={40} className={classes.cardGrid}>
 							{posts.slice(-3, -1).map((post) => (
 								<Grid item key={post.title} xs={12} md={6}>
 									<Card className={classes.card}>
 										<div className={classes.cardDetails}>
+											<Hidden smUp>
+												<CardMedia className={classes.cardTopMedia} image={post.image ? 'images/' + post.image : ImageBox} title="Image title" />
+											</Hidden>
 											<CardContent>
 												<Typography variant="subheading" color="textSecondary">
 													{post.date}
@@ -158,16 +193,12 @@ class News extends React.Component {
 													{post.description}
 												</Typography>
 												<Typography variant="subheading" color="primary">
-													Lue lisää...
+													{post.result ? <a href={'results/' + post.result}>Tulokset</a> : ''}
 												</Typography>
 											</CardContent>
 										</div>
 										<Hidden xsDown>
-											<CardMedia
-												className={classes.cardMedia}
-												image={ImageBox}
-												title="Image title"
-											/>
+											<CardMedia className={classes.cardMedia} image={post.image ? 'images/' + post.image : ImageBox} title="Image title" />
 										</Hidden>
 									</Card>
 								</Grid>
@@ -192,7 +223,7 @@ class News extends React.Component {
 												{post.description}
 											</Typography>
 											<Typography variant="subheading" color="primary">
-												Lue lisää...
+												{post.result ? <a href={'results/' + post.result}>Tulokset</a> : ''}
 											</Typography>
 										</Grid>
 									))}

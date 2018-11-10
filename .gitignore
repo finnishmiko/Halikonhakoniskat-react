@@ -25,3 +25,6 @@ src/*.css
 
 # no images
 src/images
+public/images
+public/results
+src/news.json
