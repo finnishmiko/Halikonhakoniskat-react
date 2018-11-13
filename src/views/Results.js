@@ -66,7 +66,7 @@ const styles = (theme) => ({
 		fontSize: '5vmin',
 	},
 	resultContainer: {
-		height: '20rem',
+		height: '60vh',
 	},
 });
 
@@ -103,16 +103,16 @@ class Results extends React.Component {
 								<TableBody>
 									{valueResults
 										? valueResults.map((row, idx) => {
-											return (
-												<TableRow className={classes.row} key={idx}>
-													<TableCell className={classes.eventrow}>
-														<a className={classes.hahalink} href={row.link}>
-															{row.name}
-														</a>
-													</TableCell>
-												</TableRow>
-											);
-										})
+												return (
+													<TableRow className={classes.row} key={idx}>
+														<TableCell className={classes.eventrow}>
+															<a className={classes.hahalink} href={row.link}>
+																{row.name}
+															</a>
+														</TableCell>
+													</TableRow>
+												);
+										  })
 										: null}
 								</TableBody>
 							</Table>

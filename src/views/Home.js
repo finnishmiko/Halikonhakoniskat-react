@@ -30,7 +30,7 @@ const styles = (theme) => ({
 	},
 	row: {
 		'&:nth-of-type(odd)': {
-			backgroundColor: '#aaa',
+			backgroundColor: '#eaeaea',
 		},
 	},
 	daterow: {
@@ -62,7 +62,7 @@ const styles = (theme) => ({
 		textAlign: 'center',
 		color: theme.palette.text.primary,
 		margin: theme.spacing.unit,
-		backgroundColor: 'lightblue',
+		backgroundColor: 'rgba(52, 150, 255,.8)',
 		width: '90%',
 		overflowX: 'auto',
 	},
@@ -82,7 +82,7 @@ const styles = (theme) => ({
 		// maxWidth: 345,
 	},
 	media: {
-		height: 200,
+		height: '12rem',
 	},
 	mediaLogo: {
 		minWidth: '100px',
@@ -147,24 +147,24 @@ class Home extends React.Component {
 									<TableBody>
 										{valueCalendar
 											? valueCalendar.slice(0, 3).map((row, idx) => {
-												let weekday = new Date(row.start).getDay();
-												let monthname = new Date(row.start).getMonth();
-												return [
-													<TableRow className={classes.row} key={idx + 'a'}>
-														<TableCell className={classes.daterow} colSpan="2">
-															{days[weekday] + ', ' + new Date(row.start).getDate() + ' ' + months[monthname]}
-														</TableCell>
-													</TableRow>,
-													<TableRow className={classes.row} key={idx + 'b'}>
-														<TableCell className={classes.eventrow}>
-															{(new Date(row.start).getHours() < 10 ? '0' + new Date(row.start).getHours() : new Date(row.start).getHours()) +
-																':' +
-																(new Date(row.start).getMinutes() < 10 ? '0' + new Date(row.start).getMinutes() : new Date(row.start).getMinutes())}
-														</TableCell>
-														<TableCell className={classes.eventrow}>{row.summary}</TableCell>
-													</TableRow>,
-												];
-											})
+													let weekday = new Date(row.start).getDay();
+													let monthname = new Date(row.start).getMonth();
+													return [
+														<TableRow className={classes.row} key={idx + 'a'}>
+															<TableCell className={classes.daterow} colSpan="2">
+																{days[weekday] + ', ' + new Date(row.start).getDate() + ' ' + months[monthname]}
+															</TableCell>
+														</TableRow>,
+														<TableRow className={classes.row} key={idx + 'b'}>
+															<TableCell className={classes.eventrow}>
+																{(new Date(row.start).getHours() < 10 ? '0' + new Date(row.start).getHours() : new Date(row.start).getHours()) +
+																	':' +
+																	(new Date(row.start).getMinutes() < 10 ? '0' + new Date(row.start).getMinutes() : new Date(row.start).getMinutes())}
+															</TableCell>
+															<TableCell className={classes.eventrow}>{row.summary}</TableCell>
+														</TableRow>,
+													];
+											  })
 											: null}
 									</TableBody>
 								</Table>
@@ -181,12 +181,12 @@ class Home extends React.Component {
 									<TableBody>
 										{valueResults
 											? valueResults.slice(0, 6).map((row, idx) => {
-												return (
-													<TableRow className={classes.row} key={idx}>
-														<TableCell className={classes.eventrow}>{row.name}</TableCell>
-													</TableRow>
-												);
-											})
+													return (
+														<TableRow className={classes.row} key={idx}>
+															<TableCell className={classes.eventrow}>{row.name}</TableCell>
+														</TableRow>
+													);
+											  })
 											: null}
 									</TableBody>
 								</Table>

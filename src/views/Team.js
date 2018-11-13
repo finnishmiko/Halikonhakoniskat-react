@@ -33,23 +33,12 @@ const styles = (theme) => ({
 	},
 	appBarSpacer: theme.mixins.toolbar,
 	content: {
-		// backgroundColor: '#f00',
 		flexGrow: 1,
 		padding: theme.spacing.unit * 3,
-		// height: '100vh',
-		// overflow: 'auto',
 	},
-	paper: {
-		backgroundColor: '#f00',
-	},
-	paper2: {
-		backgroundColor: '#0f0',
-	},
-	paper3: {
-		backgroundColor: '#00f',
-	},
-	paper4: {
-		backgroundColor: '#ff0',
+	mainFeaturedPost: {
+		paddingTop: '4rem',
+		paddingBottom: '4rem',
 	},
 });
 

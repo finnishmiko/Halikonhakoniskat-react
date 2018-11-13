@@ -140,7 +140,7 @@ class News extends React.Component {
 													<Typography variant="subheading" color="inherit">
 														{posts ? posts[posts.length - 1].date : null}
 													</Typography>
-													<Typography variant="display2" color="inherit" gutterBottom>
+													<Typography variant="display1" color="inherit" gutterBottom>
 														{posts ? posts[posts.length - 1].title : null}
 													</Typography>
 													<Typography variant="headline" color="inherit" paragraph>
@@ -155,7 +155,7 @@ class News extends React.Component {
 												<Typography variant="subheading" color="inherit">
 													{posts ? posts[posts.length - 1].date : null}
 												</Typography>
-												<Typography variant="display2" color="inherit" gutterBottom>
+												<Typography variant="display1" color="inherit" gutterBottom>
 													{posts ? posts[posts.length - 1].title : null}
 												</Typography>
 												<Typography variant="headline" color="inherit" paragraph>
